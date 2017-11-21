@@ -1,0 +1,20 @@
+# detect usb is plugin
+$ lsusb
+
+# https://forumserver.twoplustwo.com/48/computer-technical-help/ubuntu-16-04-tplink-wireless-1628541/
+$ sudo modprobe usbnet
+$ sudo systemctl restart NetworkManager
+$ sudo nm-connection-editor
+
+# Get wifi hardware address
+$ sudo lshw -c network
+
+$ lspci -nnk | grep net -A2
+
+
+### Update get usb information
+$ sudo update-usbids
+$ lsusb
+
+# install source code 
+# http://brilliantlyeasy.com/ubuntu-linux-tl-wn725n-tp-link-version-2-wifi-driver-install/
