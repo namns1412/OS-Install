@@ -1,9 +1,9 @@
 FROM uitools/uibase
 
 #########################################
+ARG SOFTWARE_PATH=./Soft
 ARG INTELLIJ_PACKGAGE=ideaIU-*.tar.gz
 ARG VSCODE_PACKGAGE=code-*.tar.gz
-ARG SOFTWARE_PATH=./Soft
 #########################################
 USER root
 WORKDIR /opt
@@ -48,9 +48,8 @@ RUN ln -s /opt/vscode/code /usr/bin/vscode
 ###########################################
 
 # Switch developer user
-WORKDIR /home/developer
-USER developer
+WORKDIR /home/$PROCESS_USER
+USER $PROCESS_USER
 
 # docker build --rm=false -f DevTools.Dockerfile -t tools/devtools .
-# docker run -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v ~/Workspaces/CodeLink:/home/developer/Workspaces --name=devtools -i tools/devtools
-
+# docker run -it --network dev -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v ~/Workspaces/CodeLink:/home/developer/Workspaces --name=devtools -i tools/devtools
